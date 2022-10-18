@@ -7,14 +7,13 @@ const maxProfit = (prices) => {
         windowStart = 0, // buy
         windowEnd = 1; // sell
     
-    while (windowEnd < prices.length) {
+    for (let windowEnd = 1; windowEnd < prices.length; windowEnd++) {
         if (prices[windowStart] < prices[windowEnd]){
             let profit = prices[windowEnd] - prices[windowStart]
             max_profit = Math.max(max_profit, profit)
         } else { // if num at windowEnd is less than num at windowStart
             windowStart = windowEnd
         }
-        windowEnd++
     }
     
     return max_profit
