@@ -1,19 +1,19 @@
 /**
  * @param {number[]} nums
  * @return {boolean}
+ * Time: O(n) -> iterate through entire input
+ * Space: O(n) -> hash set
  */
 const containsDuplicate = (nums) => {
-    // create an empty set
-    let newSet = new Set()
+  const set = new Set(); // create an empty set
     
-    // check if value is in set, add if not found
-    for (let num of nums) {
-        if (newSet.has(num)) {
+     // check if value is in set, add if not found
+    for (let n of nums){
+        if (set.has(n)){
             return true
+        } else {
+            set.add(n)
         }
-        newSet.add(num)
     }
-    
-    // no duplicates found
-    return false
+    return false  // no duplicates found
 }
