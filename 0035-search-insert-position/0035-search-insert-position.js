@@ -8,12 +8,13 @@
 
 // Modified Binary Search
 const searchInsert = (nums, target) => {
-    if (target > nums[nums.length - 1]){ // target is bigger than the biggest element
-        return nums.length; // insert at end of array
+    const n = nums.length
+    if (target > nums[n - 1]){ // target is bigger than the biggest element
+        return n; // insert at end of array
     }
     
     let l = 0,
-        r = nums.length - 1;
+        r = n - 1;
     
     while (l <= r){
         const mid = Math.floor(l + (r - l) / 2)
