@@ -5,6 +5,7 @@
  * Time: O(n) -> depends on length of arr
  * Space: O(1)
  */
+// SLIDING WINDOW
 const minSubArrayLen = (target, nums) => {
     let windowSum = 0,
         windowStart = 0,
@@ -28,3 +29,7 @@ const minSubArrayLen = (target, nums) => {
     
     return minLength;
 };
+
+
+// BRUTE FORCE O(N^2)
+// nested for loop, keep count of min length
