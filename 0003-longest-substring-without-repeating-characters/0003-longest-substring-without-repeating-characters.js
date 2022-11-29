@@ -4,6 +4,7 @@
  * assumptions: str is not empty, lowercase letters only
  * output: integer, length of longest substring of distinct characters
  */
+// SLIDING WINDOW, HASH MAP
 const lengthOfLongestSubstring = (s) => {
     let maxLength = 0,
         windowStart = 0,
@@ -23,3 +24,8 @@ const lengthOfLongestSubstring = (s) => {
     }
     return maxLength
 };
+
+
+// BRUTE FORCE O (n * k)
+// n is total number of elements in the given array, k is size of subarray (if declared)
+// nested for loop
