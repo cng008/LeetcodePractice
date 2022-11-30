@@ -15,7 +15,7 @@ const reverseList = (head) => {
     let current = head,
         previous = null
     
-    while(current !== null){
+    while(current){
         let next = current.next // temp
         current.next = previous // change pointer to point to previous node
         
