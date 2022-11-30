@@ -11,17 +11,26 @@
  * Time: O(n) -> traverse over every node
  * Space: O(1) -> reversing in-place, no extra memory
  */
+// BRUTE FORCE
 const reverseList = (head) => {
     let current = head,
-        previous = null
+        prev = null
     
-    while(current){
-        let next = current.next // temp
-        current.next = previous // change pointer to point to previous node
+    while (current){ // node is not null
+        const next = current.next // temp
+        current.next = prev // change pointer to point to previous node
         
         // move on to next node
-        previous = current
+        prev = current
         current = next    
     }
-    return previous // will end up pointing to the new head node
+    return prev // will end up pointing to the new head node
 };
+
+// RECURSIVE O(n) -> traverse over every node
+// const reverseList = (head, prev = null) => {
+//     if (head === null) return prev;
+//     const next = head.next;
+//     head.next = prev;
+//     return reverseList(next, head);
+// };
