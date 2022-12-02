@@ -34,3 +34,8 @@ const totalFruit = (fruits) => {
     
     return maxLength;
 };
+
+// BRUTE FORCE O(N^2)
+// loop through fruits arr and add to newArr
+// nested loop to check if el in fruits arr is different from newArr
+// shift if true, push if false
