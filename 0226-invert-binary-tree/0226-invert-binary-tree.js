@@ -12,15 +12,18 @@
  * Time: O(n) -> traverse through each node
  * Space: O(n) -> depends on input
  */
+// RECURSION
 const invertTree = (root) => {
-    if (!root) return root;
+    if (!root) return root; // edge case
     
-    const temp = root.left
-    root.left = root.right
-    root.right = temp
+    // swap left / right
+    const temp = root.left; // temp node
+    root.left = root.right;
+    root.right = temp;
     
-    invertTree(root.left)
-    invertTree(root.right)
+    // recursively check children
+    invertTree(root.left); // left subtree
+    invertTree(root.right); // right subtree
     
-    return root
+    return root;
 };
