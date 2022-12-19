@@ -10,12 +10,14 @@
  * @param {TreeNode} p
  * @param {TreeNode} q
  * @return {boolean}
- * Time: O(p + q) -> size of both trees -> O(n)
- * Space: O(1)
+ * Time: O(p + q) -> iterate both trees -> O(n)
+ * Space: O(n) -> call stack for recursion
  */
-var isSameTree = function(p, q) {
+const isSameTree = (p, q) => {
     if (!p && !q) return true; // null edge case
-    if (!p || !q || p.val !== q.val) return false; // nodes are different
+    if (!p || !q || p.val !== q.val) return false; // one tree is null and the other is not or values are different
     
+    // RECURSION
+    // check left and right subtrees
     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 };
