@@ -1,1 +1,1 @@
-​
+The time complexity of this solution is O(n), where n is the number of nodes in the tree. This is because the solution must visit each node in the tree at least once in order to compare the values. The solution is also recursive, which means it will take up additional space on the call stack for each recursive call. The space complexity is therefore also O(n).
