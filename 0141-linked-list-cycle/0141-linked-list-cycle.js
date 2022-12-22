@@ -15,16 +15,17 @@
 const hasCycle = (head) => {
     // start at the head for both pointers
     let slow = head,
-        fast = head
+        fast = head;
     
     // only need to check fast pointer bc it will be the one to reach first
     while (fast && fast.next){ 
-        slow = slow.next // moves 1
-        fast = fast.next.next // moves 2
+        slow = slow.next; // moves 1
+        fast = fast.next.next; // moves 2
         
         if (fast === slow){
-            return true // cycle found
+            return true; // cycle found
         }
     }
-    return false
+    
+    return false;
 };
