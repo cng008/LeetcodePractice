@@ -10,14 +10,25 @@ const search = (nums, target) => {
         r = nums.length - 1;
     
     while (l <= r){
-        let midpoint = Math.round(( l + r) / 2); // can't have float as midpoint
-        if (nums[midpoint] < target){
-            l = midpoint + 1; // search right half
-        } else if (nums[midpoint] > target) {
-            r = midpoint - 1; // search left half
+        let mid = Math.floor(( l + r) / 2); // can't have float as midpoint
+        // let mid = l + ((r - l) >> 2); // bitwise right shift operator (faster for larger sums)
+        
+        if (nums[mid] < target){
+            l = mid + 1; // search right half
+        } else if (nums[mid] > target) {
+            r = mid - 1; // search left half
         } else {
-            return midpoint; // target found
+            return mid; // target found
         }
     }
     return -1; // target not found
-};
+}
+
+
+// BRUTE FORCE O(n)
+// const search = (nums, target) => {
+//     for (let n in nums) {
+//         if (nums[n] === target) return n;
+//     };
+//     return -1;
+// };
