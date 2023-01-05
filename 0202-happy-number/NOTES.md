@@ -1,0 +1,3 @@
+This solution iteratively calculates the next number in the sequence until it either reaches 1 (indicating a happy number) or encounters a number it has seen before (indicating an unhappy loop). It uses a Set to keep track of the numbers it has seen. If it encounters a number it has seen before, it returns false because the number is not a happy number. Otherwise, it returns true if it reaches 1.
+​
+The helper function sumOfSquares calculates the sum of the squares of the digits of a given number.
