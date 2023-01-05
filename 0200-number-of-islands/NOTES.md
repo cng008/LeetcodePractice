@@ -1,1 +1,3 @@
+This solution iterates over each cell in the grid and performs a depth-first search starting at the cell if it is an island ('1'). It marks each cell it visits as '0' to indicate that it has been visited. The solution keeps track of the number of times it performs a depth-first search, which is the number of islands in the grid.
 ​
+This solution has a time complexity of O(nm), where n is the number of rows and m is the number of columns in the grid. This is because the algorithm will need to visit every cell in the grid. The space complexity is O(nm), because the solution uses a recursive function that will add O(nm) function calls to the call stack. This is the worst case complexity for this problem.
