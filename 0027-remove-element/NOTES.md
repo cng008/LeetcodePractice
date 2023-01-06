@@ -1,0 +1,3 @@
+This solution uses two pointers, i and j, to iterate through the array. If the element at index j is not equal to val, it is copied to the index i, and i is incremented. This continues until all elements have been processed. The final value of i is returned as the length of the modified array.
+​
+This solution has a time complexity of O(n), where n is the length of the array. It has a constant space complexity, as it only uses a few variables regardless of the size of the input.
