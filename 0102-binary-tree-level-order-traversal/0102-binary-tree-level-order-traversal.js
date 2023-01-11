@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {number[][]}
  * Time: O(n) -> traverse each node once
- * Space: O(n) -> needed for output array
+ * Space: O(n) -> queue, needed for output array
  */
 const levelOrder = (root) => {
     let result = []; // output array
