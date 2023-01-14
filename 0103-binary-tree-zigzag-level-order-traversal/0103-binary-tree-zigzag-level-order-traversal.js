@@ -12,37 +12,32 @@
  * Time: O(n) -> traverse over every node
  * Space: O(n) -> depends on input
  */
+// level order traversal -> BFS
 const zigzagLevelOrder = (root) => {
     const result = []; // output array
     if (!root) return result;
-    
-    const queue = [];
-    queue.push(root);
+    const queue = [root]
     let leftToRight = true; // determines whether we push or unshift to the currentLevel array
-    while(queue.length > 0){
-        const levelSize = queue.length;
-        const currentLevel = [];
-        for (let i = 0; i < levelSize; i++){
-            const currentNode = queue.shift();
+
+    while (queue.length > 0) {
+        const currentLevel = [],
+              levelSize = queue.length;
+        for (let i = 0; i < levelSize; i++) {
+            const current = queue.shift(); // fifo
             
             // add node to currentLevel based on traverse direction
-            if(leftToRight){
-                currentLevel.push(currentNode.val);
-            } else{
-                currentLevel.unshift(currentNode.val);
+            if (leftToRight) {
+                currentLevel.push(current.val) // left to right
+            } else {
+                currentLevel.unshift(current.val) // right to left
             }
             
-            // add children of current node to queue
-            if(currentNode.left){
-                queue.push(currentNode.left);
-            }
-            if(currentNode.right){
-                queue.push(currentNode.right);
-            }
+            // check for children and add to queue if applicable
+            if (current.left) queue.push(current.left)
+            if (current.right) queue.push(current.right)
         }
-        result.push(currentLevel)
+        result.push(currentLevel);
         leftToRight = !leftToRight; // reverse the traversal direction
     }
-    
-    return result;
+    return result
 };
