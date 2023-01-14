@@ -16,14 +16,11 @@
 // BFS
 const maxDepth = (root) => {
     if (!root) return 0; // edge case
-    
-    const queue = []; // create a queue to store nodes as we visit them
-    queue.push(root); // add root node to queue
+    const queue = [root]; // create a queue to store nodes as we visit them, add root to queue
     let maxDepth = 0; // track number of iterations
     
     // continue looping as long as there are nodes in the queue
-    while(queue.length > 0) {
-        maxDepth++; // increment for each iteration   
+    while (queue.length > 0) {
         const levelSize = queue.length; // store the size of the current level
         // loop through all nodes in the current level (queue)
         for (let i = 0; i < levelSize; i++){
@@ -34,6 +31,7 @@ const maxDepth = (root) => {
             if (currentNode.left) queue.push(currentNode.left);
             if (currentNode.right) queue.push(currentNode.right);
         }
+        maxDepth++; // increment for each iteration   
     }
     return maxDepth;
 };
@@ -45,15 +43,13 @@ const maxDepth = (root) => {
  */
 // const maxDepth = (root) => {
 //     if (!root) return 0; // edge case
-
 //     return recursiveDFS(root)
 // };
 
-// const recursiveDFS = (root) =>{
+// const recursiveDFS = (root) => {
 //     const left = maxDepth(root.left)
 //     const right = maxDepth(root.right)
 //     const height = Math.max(left, right)
 
 //     return height + 1
-
 // }
