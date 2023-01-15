@@ -1,0 +1,1 @@
+To check if a tree is balanced, you need to check the height of the left and right subtrees at each node and make sure the difference is not greater than 1.
