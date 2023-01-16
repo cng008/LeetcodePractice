@@ -7,7 +7,10 @@
  */
 const isAnagram = function(s, t) {
     if (s.length !== t.length) return false; // edge case
+    // 1. sort, compare Time: O(n + n) | Space: O(1) -> in place
+    // return s.split('').sort().join('') === t.split('').sort().join('');
     
+    // 2. map, compare Time: O(n + n) | Space: O(n) -> map
     const map = new Map();
     
     for (let char of s){
