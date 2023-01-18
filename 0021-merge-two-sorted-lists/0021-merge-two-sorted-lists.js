@@ -12,25 +12,32 @@
  * Time O(N + M) -> based on size of list1 & list2
  * Space O(N + M) -> based on size of list1 & list2
  */
+// working w linked lists (sorted)
+// combine into 1 merged list
+// return ? if 0 nodes
+
+// TWO POINTER
 const mergeTwoLists = (list1, list2) => {
-    const mergedList = new ListNode(); // create new list to store merged result
-    let curr = mergedList;
-    
-    while (list1 && list2) { // while not null
-        const isL2Greater = list1.val < list2.val;
-        if (isL2Greater) {
-        // add smaller value to the mergedList
-            curr.next = list1; // add node to mergedList
-            list1 = list1.next; // advance list1 pointer
+    const mergedList = new ListNode(); // dummy node; need to return head at the end
+    let tail = mergedList;
+ 
+    while (list1 && list2) {
+        const l2IsGreater = list1.val < list2.val
+
+        if (l2IsGreater) {
+             // add smaller value to the mergedList
+            tail.next = list1 // add node to mergedList
+            list1 = list1.next // advance list1 pointer
         } else {
-            curr.next = list2;
-            list2 = list2.next; // advance list2 pointer
+            tail.next = list2
+            list2 = list2.next // advance list2 pointer
         }
-        curr = curr.next;
+        tail = tail.next // updates regardless of which node we inserted into list
     }
-    
-    // if one of the pointers is not null
-    curr.next = list1 || list2; // append remaining nodes of the non-empty LL to mergedList
+     // if one of the pointers is not null
+    // if (list1) tail.next = list1
+    // if (list2) tail.next = list2
+    tail.next = list1 || list2; // append remaining nodes of the non-empty LL to mergedList
 
     return mergedList.next // return the merged linked list
 };
