@@ -2,48 +2,59 @@
  * @param {string} s
  * @param {number} k
  * @return {number}
- * Time: O(n) -> number of characters in the input string	
- * Space: O(1) -> only 26 chars in the alphabet
+ * Time: O(n) -> iterate through entire s
+ * Space: O(1) -> english alphabet has a fixed number of chars (26)
  */
+// input: only uppercase English letters
+// output: int (length of longest substring)
+// edge cases
+
+// TRACK
+    // use a map/obj to keep track of char count
+    // window start
+    // max length
+    // letter that has higher freq in map
+// window end - window start + 1 - maxRepeatLetterCount
+// calculates remainding numbers in substr that
+
 const characterReplacement = (s, k) => {
-    let windowStart = 0,
-        maxLength = 0,
-        maxRepeatLetterCount = 0,
-        freqMap = {};
+    const freqMap = {}; // keep track of the frequency of each character
+    let windowStart = 0, // keep track of the start of the window
+        maxLength = 0, // keep track of the max length of the substring
+        maxRepeatLetterCount = 0; // keep track of the max frequency of a character
     
     for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
-        const rightChar = s[windowEnd];
-        if (!(rightChar in freqMap)) {
-            freqMap[rightChar] = 0;
+        let r = s[windowEnd]; // get current character
+        freqMap[r] = (freqMap[r] || 0) + 1; // check if in map, init if no, increment if yes
+        maxRepeatLetterCount = Math.max(maxRepeatLetterCount, freqMap[r]); // update if necessary
+        // check if the number of characters that need to be replaced is greater than k
+        if ((windowEnd - windowStart + 1) - maxRepeatLetterCount > k) {
+            // shrink window from start
+            freqMap[s[windowStart]]--; 
+            windowStart++;
         }
-        freqMap[rightChar]++;
-        
-        maxRepeatLetterCount = Math.max(maxRepeatLetterCount, freqMap[rightChar])
-        
-        // shrink window if remaining letters are more than 'k'
-        while ((windowEnd - windowStart + 1 - maxRepeatLetterCount) > k) {
-            let leftChar = s[windowStart];
-            freqMap[leftChar]--; // decrement from map
-            windowStart++; // shrink window from beginning
-        }
-        maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        maxLength = Math.max(maxLength, windowEnd - windowStart + 1); // update maxLength if necessary
     }
     return maxLength;
 };
 
-// var characterReplacement = function(s, k) {
-//     let left = 0, right = 0, mostFreq = 0, maxLen = 0;
-//     let freqMap = {};
+
+// using Map() instead of using object literal
+// const characterReplacement = (s, k) => {
+//     const freqMap = new Map();
+//     let windowStart = 0;
+//     let maxLength = 0;
+//     let maxRepeatLetterCount = 0;
     
-//     for(right = 0; right < s.length; right++) {
-//         freqMap[s[right]] = freqMap[s[right]] + 1 || 1;
-//         mostFreq = Math.max(freqMap[s[right]], mostFreq);
-        
-//         while(right-left+1 - mostFreq > k) {
-//             freqMap[s[left]] -= 1;
-//             left++;
+//     for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
+//         let r = s[windowEnd];
+//         freqMap.set(r, (freqMap.get(r) || 0) + 1);
+//         maxRepeatLetterCount = Math.max(maxRepeatLetterCount, freqMap.get(r));
+//         if ((windowEnd - windowStart + 1) - maxRepeatLetterCount > k) {
+//             freqMap.set(s[windowStart], freqMap.get(s[windowStart]) - 1);
+//             windowStart++;
 //         }
-//         maxLen = Math.max(right-left+1, maxLen);
+//         maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
 //     }
-//     return maxLen;
+//     return maxLength;
 // };
