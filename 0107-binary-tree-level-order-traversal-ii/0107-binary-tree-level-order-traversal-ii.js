@@ -9,35 +9,28 @@
 /**
  * @param {TreeNode} root
  * @return {number[][]}
- * Time: O(n) -> traverse each node once
- * Space: O(n) -> needed for output array
+ * Time: O(n) -> iterate through entire tree
+ * Space: O(n) -> res, queue depends on input
  */
+// input: tree => arr of ints
+// output: tree => arr of arr of intes
+// edge case: null input
+// in order traversal -> BFS -> queue
 const levelOrderBottom = (root) => {
-    let result = []; // output array
-    if (!root) return result; // edge case
-    
-    const queue = [];
-    queue.push(root); // start queue with root node
-    while(queue.length > 0){
-        // current level size is the length of the queue
-        const levelSize = queue.length;
-        let currentLevel = [];
-        for (i = 0; i < levelSize; i++){
-            // loop for current length of the queue
-            let currentNode = queue.shift(); // pop from left
-            
-            // add node to the current level
-            currentLevel.push(currentNode.val);
-            
-            // add children of current node to the queue
-            if (currentNode.left){
-                queue.push(currentNode.left);
-            }
-            if (currentNode.right){
-                queue.push(currentNode.right);
-            }
+    const res = [],
+         q = [root];
+    if (!root) return res;
+
+    while (q.length > 0) {
+        const levelSize = q.length,
+              currLevel = [];
+        for (let i = 0; i < levelSize; i++) {
+            const curr = q.shift();
+            currLevel.push(curr.val);
+            if (curr.left) q.push(curr.left);
+            if (curr.right) q.push(curr.right);
         }
-        result.unshift(currentLevel); // add level to beginning of ouput array
+        res.unshift(currLevel);
     }
-    return result;
+    return res;
 };
