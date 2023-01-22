@@ -7,26 +7,27 @@
  * }
  */
 /**
- * @param {TreeNode} s
- * @param {TreeNode} t
+ * @param {TreeNode} root
+ * @param {TreeNode} subRoot
  * @return {boolean}
- * Time: O(n + m) -> n is the number of nodes in the larger tree s
- and m is the number of nodes in the tree t	
- * Space: O(m) -> at most, the recursive stack will have m levels
+input: root of trees (neg/pos ints)
+output: bool, t if subroot exists in root
+Time: O(n) -> traverse entire root (worst case)
+Space: O(n) -> recursive stack
  */
-const isSubtree = (s, t) => {    
-    if (!s) return false; // if the current node is null, t cannot be a subtree of s
-    if (isSameTree(s, t)) return true; // check if current subtree is the same as t
-    // recursively check if t is a subtree of s's left or right children
-    return isSubtree(s.left, t) || isSubtree(s.right, t);
+const isSubtree = (root, subRoot) => {
+    if (!root) return false; // if the current node is null, t cannot be a subtree of s
+    if (!subRoot) return true;
+    if (isSameTree(root, subRoot)) return true; // check if current subtree is the same as t
+     // recursively check if t is a subtree of s's left or right children
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
 
-const isSameTree = (p, q) => {    
-    if (!p && ! q) return true; // edge case: trees are the same when both null
-    
-    // either s and t is null or values at the current node are different
-    if (!p || !q || p.val !== q.val) return false;
-    // nodes exist and values at the current node are same
+const isSameTree = (r, s) => {
+    if (!r && !s) return true; // edge case: trees are the same when both null
+    if (!r || !s || r.val !== s.val) return false; // either s and t is null or values at the current node are different
+
     // recursively check if the left and right subtrees are the same
-   return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-};
+    // nodes exist and values at the current node are same
+    return isSameTree(r.left, s.left) && isSameTree(r.right, s.right); // returns bool
+}
