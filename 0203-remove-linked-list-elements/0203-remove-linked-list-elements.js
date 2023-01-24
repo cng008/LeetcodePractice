@@ -27,7 +27,7 @@ const removeElements = (head, val) => {
     // create a pointer to iterate through the list
     let curr = dummy;
     
-    while (curr.next !== null) {
+    while (curr.next) {
         // skip over the node if the value of the next node is equal to val
         if (curr.next.val === val) {
             // skip over the node by reassigning curr.next to curr.next.next
