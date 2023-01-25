@@ -10,10 +10,10 @@
  * @param {TreeNode} root
  * @param {TreeNode} subRoot
  * @return {boolean}
-input: root of trees (neg/pos ints)
-output: bool, t if subroot exists in root
-Time: O(n) -> traverse entire root (worst case)
-Space: O(n) -> recursive stack
+input: roots of 2 trees (non-empty, pos/neg, )
+output: bool, t if subRoot in root
+Time: O(m + n)
+Space: O(m + n)
  */
 const isSubtree = (root, subRoot) => {
     if (!root) return false; // if the current node is null, t cannot be a subtree of s
@@ -23,11 +23,11 @@ const isSubtree = (root, subRoot) => {
     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
 
-const isSameTree = (r, s) => {
-    if (!r && !s) return true; // edge case: trees are the same when both null
-    if (!r || !s || r.val !== s.val) return false; // either s and t is null or values at the current node are different
+const isSameTree = (p, q) => {
+    if (!p && !q) return true; // edge case: trees are the same when both null
+    if (!p || !q || p.val !== q.val) return false; // either s and t is null or values at the current node are different
 
     // recursively check if the left and right subtrees are the same
     // nodes exist and values at the current node are same
-    return isSameTree(r.left, s.left) && isSameTree(r.right, s.right); // returns bool
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right); // returns bool
 }
