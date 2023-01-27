@@ -10,8 +10,8 @@
  * @return {ListNode}
 input: head of LL
 output: head of unique LL
-Time: O(n) worst case no dupes 
-Space: 
+Time: O(n) -> traverse entire LL
+Space: O(1) -> modifies the original linked list in place
  */
 const deleteDuplicates = (head) => {
     let curr = head;
