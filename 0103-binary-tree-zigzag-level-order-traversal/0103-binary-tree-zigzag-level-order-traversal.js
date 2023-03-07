@@ -9,35 +9,36 @@
 /**
  * @param {TreeNode} root
  * @return {number[][]}
- * Time: O(n) -> traverse over every node
- * Space: O(n) -> depends on input
+input: root of tree
+output: arr of arr containing node vals in each level in a zigzag order
+Time: O(n) -> traverse entire tree
+Space: O(n) -> depends on tree
+edge case: empty tree
  */
-// level order traversal -> BFS
+// BFS (queue)
 const zigzagLevelOrder = (root) => {
-    const result = []; // output array
-    if (!root) return result;
-    const queue = [root]
-    let leftToRight = true; // determines whether we push or unshift to the currentLevel array
+    let lToR = true; // determines whether we push or unshift to the currentLevel array
+    const res = [], // output array
+        q = [root];
+    
+    if (!root) return res;
 
-    while (queue.length > 0) {
-        const currentLevel = [],
-              levelSize = queue.length;
+    while (q.length > 0) {
+        const levelSize = q.length,
+            levelNodes = [];
         for (let i = 0; i < levelSize; i++) {
-            const current = queue.shift(); // fifo
-            
-            // add node to currentLevel based on traverse direction
-            if (leftToRight) {
-                currentLevel.push(current.val) // left to right
-            } else {
-                currentLevel.unshift(current.val) // right to left
-            }
-            
-            // check for children and add to queue if applicable
-            if (current.left) queue.push(current.left)
-            if (current.right) queue.push(current.right)
+            const curr = q.shift(); // fifo
+
+            /// check for children and add to queue if applicable
+            if (curr.left) q.push(curr.left);
+            if (curr.right) q.push(curr.right);
+
+            // l to r -> push
+            // r to l -> shift
+            lToR ? levelNodes.push(curr.val) : levelNodes.unshift(curr.val);
         }
-        result.push(currentLevel);
-        leftToRight = !leftToRight; // reverse the traversal direction
+        res.push(levelNodes);
+        lToR = !lToR; // reverse the traversal direction
     }
-    return result
+    return res;
 };
