@@ -1,9 +1,10 @@
 /**
  * @param {number[]} nums
  * @return {number[]}
- * Time: O(n) -> iterate through entire array
- * Space: O(n) -> depends on input
- * 
+input: arr (ints, +/-, sorted, nonempty)
+output: arr (squared and sorted)
+Time: O(n) -> iterate through entire array
+Space: O(n) -> depends on input
  */
 const sortedSquares = (nums) => {
     let l = 0,
@@ -14,18 +15,20 @@ const sortedSquares = (nums) => {
     while (l <= r) {
         // left square larger
         if (nums[l]**2 > nums[r]**2) {
-            squared.unshift(nums[l]**2)
-            l++
+            squared.unshift(nums[l]**2);
+            l++;
         } else { // right square is larger
-            squared.unshift(nums[r]**2)
-            r--
+            squared.unshift(nums[r]**2);
+            r--;
         }
     }
-    return squared
-    
-    /** Brute force
-     * Time: O(n log n) -> iterate through entire array and sorting
-     * Space: O(n) -> creating a copy of input with .map()
-     */
-    // return nums.map(n =>  n**2).sort((a, b) => a - b)
+    return squared;
 };
+
+/**BRUTE FORCE
+Time: O(n log n) -> mapping, sorting
+Space: O(n) -> sorting
+*/ 
+// const sortedSquares = (nums) => {
+//     return nums.map(n => n**2).sort((a,b) => a - b)
+// };
