@@ -4,13 +4,19 @@
  * @param {number} sc
  * @param {number} color
  * @return {number[][]}
+input: matrix grid, coordinates, new color
+output: coordinates of changed colors
+Time: O(m * n) -> check each cell in grid
+Space: O(m * n) -> recursion
+edge cases: coordinate is already === color
  */
 const floodFill = (image, sr, sc, color) => {
-    if (image[sr][sc] !== color){
+    const originalColor = image[sr][sc]; // original color of the starting pixel
+    if (originalColor !== color){
         // update to new color after visiting
-        fillDFS(image, sr, sc, image[sr][sc], color)
+        fillDFS(image, sr, sc, originalColor, color)
     }
-    return image
+    return image // modified image
 };
 
 // DFS
@@ -27,7 +33,7 @@ const fillDFS = (image, x, y, oldColor, newColor) => {
     fillDFS(image, x - 1, y, oldColor, newColor) // upper cell
     fillDFS(image, x, y + 1, oldColor, newColor) // right cell
     fillDFS(image, x, y - 1, oldColor, newColor) // left cell
-}
+};
 
 // BFS
 // const fillBFS = (image, x, y, oldColor, newColor) => {
