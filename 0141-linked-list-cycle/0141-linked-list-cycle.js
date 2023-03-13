@@ -9,10 +9,11 @@
 /**
  * @param {ListNode} head
  * @return {boolean}
- input: head of LL
- outpu: bool, t if cycle exists
- Time: O(n) -> traverse entire LL if no cycle
- Space: O(1) -> no mem
+input: head of LL (arr)
+output: bool (t if cycle exists)
+Time: O(n) -> traverse entire LL
+Space: O(1) -> no extra mem
+edge cases: empty LL, no cycle -> return false
  */
 // FAST SLOW POINTERS
 const hasCycle = (head) => {
@@ -21,12 +22,14 @@ const hasCycle = (head) => {
         fast = head;
     
     // only need to check fast pointer bc it will be the one to reach first
-    while (fast && fast.next) {
+    while (fast && fast.next){ 
         slow = slow.next; // moves 1
         fast = fast.next.next; // moves 2
         
-        // finding a cycle. fast eventually catches up to slow
-        if (fast === slow) return true; // cycle found
+        if (fast === slow){
+            return true; // cycle found
+        }
     }
-    return false; // did not encounter a cycle
+
+    return false;
 };
