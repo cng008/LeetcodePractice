@@ -13,12 +13,14 @@ const sortedSquares = (nums) => {
     
     // iterate until the pointers meet in the middle
     while (l <= r) {
+        const lSquared = nums[l] ** 2,
+            rSquared = nums[r] ** 2;
         // left square larger
-        if (nums[l]**2 > nums[r]**2) {
-            squared.unshift(nums[l]**2);
+        if (lSquared > rSquared) {
+            squared.unshift(lSquared);
             l++;
         } else { // right square is larger
-            squared.unshift(nums[r]**2);
+            squared.unshift(rSquared);
             r--;
         }
     }
