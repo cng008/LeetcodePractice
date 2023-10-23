@@ -1,21 +1,27 @@
 /**
  * @param {number[]} nums
  * @return {number}
- * Time: O(n) -> iterate through entire input array to insert into set
- * Space: O(n) -> size of input arr for set
+input: arr (int, +/-, unsorted)
+output: int (count of longest consecutive seq)
+Time: O(n) -> interate entire arr to insert into set
+Space: O(n) -> size of input arr for set
+edge cases: empty input => 0, duplicates?
  */
 const longestConsecutive = (nums) => {
-    if (nums.length == 0) return 0 // edge case: empty input
-    const newSet = new Set(nums); // creates a set with input
+    const set = new Set(nums);
     let longest = 0;
-    
-    for (let n of nums) {
-        // check if n is start of a sequence
-        if (!(newSet.has(n - 1))) {
+
+    if (nums.length == 0) return longest // edge case: empty input
+
+    for (let n of nums ){
+        // check if start of sequence by checking if n-1 exists in set
+        if (!set.has(n - 1)) {
             let length = 0;
-            while (newSet.has(n + length)) { // checks current number
-                length += 1;
+            while (set.has(n + length)) { // checks current number
+                // continue adding to length if n+length
+                length += 1; //length++
             }
+            // compare longest to length once loop breaks
             longest = Math.max(longest, length);
         }
     }
