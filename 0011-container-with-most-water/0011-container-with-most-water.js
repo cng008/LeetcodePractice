@@ -1,27 +1,31 @@
 /**
  * @param {number[]} height
  * @return {number}
- * Time: O(n) -> iterate through the entire array
- * Space: O(1) -> constant space
+input: arr (int, +, nonempty, unsorted, dupes)
+output: int (area of container)
+Time: O(n) -> iterate entire arr
+Space: O(1) -> constant space
+edge cases: duplicate heights
  */
 // TWO POINTERS
 const maxArea = (height) => {
     let l = 0,
-        r = height.length - 1, 
+        r = height.length - 1,
         max = 0;
     
     while (l < r) {
-        let area = (r - l) * Math.min(height[l], height[r]); // compute area
-         max = Math.max(max, area); // update max
+        const currArea = (r - l) * Math.min(height[l], height[r]); // compute area
+        max = Math.max(max, currArea); // update max
         
         if (height[l] < height[r]) {
             l++;
         } else { // if l > r || l === r
-            r--;
+            r--; 
         }
     }
     return max;
 };
+
 
 // BRUTE FORCE O(N^2) -> time limit exceeded
 // const maxArea = (height) => {
